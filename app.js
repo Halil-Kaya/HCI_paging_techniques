@@ -16,7 +16,6 @@ app.use(expressLayouts)
 app.set('view engine','ejs')
 
 
-
 app.set('views', path.resolve(__dirname,'src/views'))
 
 app.use('/hw',hwRouter)
