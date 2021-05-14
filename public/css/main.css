@@ -1,0 +1,75 @@
+a{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color:black;
+    display:block;
+}
+
+body{
+    background-color: #28527a;
+}
+
+.page{
+    padding: 20px;
+    display: flex;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.page a{
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.page .pageCount{
+    margin-left: 18px;
+    margin-right: 18px;
+    font-size: 24px;
+    padding-top:4px;
+    padding-bottom:4px;
+
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .4);
+}
+
+.page span{
+    font-size: 24px;
+}
+
+.page .totalPage{
+    background-color:white;
+    padding-left:8px;
+    padding-right:8px;
+    font-size: 24px;
+    border: 1px solid rgba(0, 0, 0, .4);
+
+}
+
+.page .previousPage,
+.page .nextPage{
+    font-size: 32px;
+}
+
+.page .previousPage:hover,
+.page .nextPage:hover{
+    color: white;
+}
+
+.card-header{
+    font-weight:bold;
+}
+
+.page select{
+    border-radius: 5px;
+}
+
+.hide{
+    display: none;
+}

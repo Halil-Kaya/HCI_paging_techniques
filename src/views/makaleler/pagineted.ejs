@@ -1,0 +1,69 @@
+<%if(+activePage >= +totalPageCount){%>
+    <h1 class="text-center" style="color:white;font-weight: bold;">Hay Aksi! Böyle Bir Sayfa Yok!</h1>
+    <a href="/hw/paginated" class="text-center mt-5" style="color: wheat;font-size: 24px;text-decoration: solid;">Makalelere Geri Dönmek İçin Tıkla</a>
+    <%}else{%>
+
+<div class="page">
+
+    <a href="/hw/paginated?p=<%- +activePage - 1%>" class="previousPage <%-(+activePage==0)?'hide':''%>">«</a>
+
+    <select name="" class="pageCount" id="pageCount">
+        <% for(let i = 1; i <= totalPageCount;i++){%>
+
+        <option value="" <%- (activePage == (i-1))?'selected':''%>><%- i%> </option>
+
+        <%}%>
+    </select>
+    <span>/</span>
+    <a href="/hw/paginated?p=<%- +totalPageCount - 1 %>" class="totalPage"><%-totalPageCount%></a>
+        <a href="/hw/paginated?p=<%- +activePage + 1%>"
+            class="nextPage <%-(+activePage==+(totalPageCount-1))?'hide':''%>">»</a>
+</div>
+
+
+
+<% makales.forEach((makale) => { %>
+<div class="row justify-content-center mb-5">
+
+    <div class="col-md-6">
+
+        <%- include('../partials/_makale_card.ejs',{makale}) %>
+
+    </div>
+
+</div>
+<% }) %>
+
+
+
+<div class="page">
+
+    <a href="/hw/paginated?p=<%- +activePage - 1%>" class="previousPage <%-(+activePage==0)?'hide':''%>">«</a>
+
+    <select name="" class="pageCount" id="pageCount2">
+        <% for(let i = 1; i <= totalPageCount;i++){%>
+
+        <option value="" <%- (activePage == (i-1))?'selected':''%>><%- i%> </option>
+
+        <%}%>
+    </select>
+    <span>/</span>
+    <a href="/hw/paginated?p=<%- +totalPageCount - 1 %>" class="totalPage"><%-totalPageCount%></a>
+        <a href="/hw/paginated?p=<%- +activePage + 1%>"
+            class="nextPage <%-(+activePage==+(totalPageCount-1))?'hide':''%>">»</a>
+</div>
+
+
+<script>
+    const pageCount = document.querySelector("#pageCount")
+    const pageCount2 = document.querySelector("#pageCount2")
+
+    pageCount.addEventListener("click", goPage)
+    pageCount2.addEventListener("click", goPage)
+
+    function goPage(e) {
+        window.location.href = `http://localhost:3000/hw/paginated?p=${e.target.selectedIndex}`;
+    }
+</script>
+
+<%}%>
