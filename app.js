@@ -8,6 +8,7 @@ require('./src/db/dbConnection')
 const app = express();
 
 const hwRouter = require('./src/routers/hwRouter')
+const dataRouter = require('./src/routers/dataRouter')
 
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
@@ -19,6 +20,7 @@ app.set('view engine','ejs')
 app.set('views', path.resolve(__dirname,'src/views'))
 
 app.use('/hw',hwRouter)
+app.use('/api',dataRouter)
 
 
 app.listen(3000, () => {

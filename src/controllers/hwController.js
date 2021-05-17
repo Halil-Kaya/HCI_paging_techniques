@@ -25,7 +25,16 @@ const getPaginatedData = async(req,res,next) => {
     return res.render('./makaleler/pagineted.ejs',{makales,totalPageCount,activePage})
 }
 
+const getScrolledDataPage = async (req,res,next) => {
+    
+    const makales = await Makale.find({}).skip(0).limit(15)
+
+    return res.render('./makaleler/scrolled.ejs',{makales})
+
+}
+
 module.exports = {
     getRawData,
-    getPaginatedData
+    getPaginatedData,
+    getScrolledDataPage
 }

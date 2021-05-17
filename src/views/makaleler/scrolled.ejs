@@ -1,0 +1,82 @@
+<% makales.forEach((makale) => { %>
+<div class="row justify-content-center mb-5">
+
+    <div class="col-md-6">
+
+        <%- include('../partials/_makale_card.ejs',{makale}) %>
+
+    </div>
+
+</div>
+<% }) %>
+
+
+<script>
+
+    const root = document.querySelector('#root')
+
+    const addMakaleToUI = (dataArray) => {
+
+        let makalesHtmlRaw = ''
+        dataArray.forEach(makale => {
+
+            const singleMakale = `
+            <div class="row justify-content-center mb-5">
+
+                <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header text-center">
+                    ${makale.title} 
+                    </div>
+                <div class="card-body text-center">
+                <blockquote class="blockquote mb-0">
+                <p>${makale.text}</p>
+                <footer class="blockquote-footer">${makale.subtitle}
+                </footer>
+                </blockquote>
+                </div>
+                </div>
+                </div>
+            </div>
+            `
+            const htmlObject = $(singleMakale)
+            root.appendChild(htmlObject[0])
+        })
+
+
+
+    }
+
+
+    let start = 1
+    let end = 1
+    let working = false;
+    $(window).scroll(function () {
+
+
+        if ($(this).scrollTop() > ($('body').height() - $(window).height() - 100) && start <= end) {
+            if(working == false){
+                working = true
+
+                fetch('/api/makale?p=' + start)
+                .then(response => {
+                    return response.json()
+                })
+                .then(jsonData => {
+                    end = jsonData.page_count
+                    start++;
+                    addMakaleToUI(jsonData.data)
+                })
+
+                setTimeout(() => {
+                    working = false
+                },800)
+            }
+
+
+
+        }
+
+    })
+</script>
